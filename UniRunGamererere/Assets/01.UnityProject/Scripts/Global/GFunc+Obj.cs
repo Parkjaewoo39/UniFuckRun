@@ -100,6 +100,11 @@ public static partial class GFunc
         obj_.transform.localPosition = new Vector3(x, y, z);
     }
 
+    //! 오브젝트의 로컬 포지션을 연산하는 함수
+    public static void AddLocalPos(this GameObject obj_, float x, float y, float z) 
+    {
+        obj_.transform.localPosition = obj_.transform.localPosition + new Vector3(x, y, z);
+    }   //AddLocalPos()
 
     //! 트랜스폼을 사용해서 오브젝트를 움직이는 함수.
     public static void Translate(this Transform transform_, Vector2 moveVector) 

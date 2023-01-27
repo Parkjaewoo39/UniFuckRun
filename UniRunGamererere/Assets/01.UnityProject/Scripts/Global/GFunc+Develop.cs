@@ -23,6 +23,15 @@ public static partial class GFunc
 #endif //DEBUG_MODE
         //Debug.Log(message, context);
     }
+
+    [System.Diagnostics.Conditional("DEBUG_MODE")]
+    public static void LogWarning(object message)
+    {
+#if DEBUG_MODE
+        Debug.LogWarning(message);
+#endif// DEBUG_MODE
+        //Debug.Log(message);
+    }
     #endregion //#region Print log func
 
     #region Assert for debug

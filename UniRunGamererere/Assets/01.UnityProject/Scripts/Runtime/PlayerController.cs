@@ -46,14 +46,14 @@ public class PlayerController : MonoBehaviour
         //마우스 왼쪽 버튼을 눌렀으며 && 최대 점프 횟수(2)에 도달하지 않았다면
         if (Input.GetMouseButtonDown(0) && jumpCount < 2)
         {
-            //점프 횟수 증가
-            jumpCount++;
-            //점프 직전에 속도를 순간적으로 제로(0,0)로 변경
-            playerRigid.velocity = Vector2.zero;
-            //리지드바디에 위쪽으로 힘 주기
-            playerRigid.AddForce(new Vector2(0, jumpForce));
-            //오디오 소스 재생
-            playerAudio.Play();
+            
+            jumpCount++;    //점프 횟수 증가
+            
+            playerRigid.velocity = Vector2.zero;//점프 직전에 속도를 순간적으로 제로(0,0)로 변경
+            
+            playerRigid.AddForce(new Vector2(0, jumpForce));//리지드바디에 위쪽으로 힘 주기
+            
+            playerAudio.Play();//오디오 소스 재생
         }
         else if (Input.GetMouseButtonUp(0) && 0 < playerRigid.velocity.y) 
         {
@@ -68,17 +68,20 @@ public class PlayerController : MonoBehaviour
     //! Player die
     private void Die() 
     {
-        //애니메이터 Die 트리거 파라미터를 셋
-        playerAni.SetTrigger("Die");
-        //오디오 소스에 할당된 오디로 클립을 deathclip;으로 변경
-        playerAudio.clip = deathSound;
-        //사망 효과음 재생
-        playerAudio.Play();
-
-        //속도를 제로(0,0)로 변경
-        playerRigid.velocity = Vector2.zero;
+        
+        playerAni.SetTrigger("Die");//애니메이터 Die 트리거 파라미터를 셋
+        
+        playerAudio.clip = deathSound;//오디오 소스에 할당된 오디로 클립을 deathclip;으로 변경
+        
+        playerAudio.Play();//사망 효과음 재생
+        
+        playerRigid.velocity = Vector2.zero;//속도를 제로(0,0)로 변경
         //사망 상태를 true로 변경
         isDead = true;
+
+        // 게임  매니저로 플레이어가 죽었을떄
+        GameManager.instance.OnPlayerDead();
+
     }   //Die()
 
     //! 트리거 충돌 감지 처리를 위한 함수
