@@ -11,9 +11,11 @@ public class ScrollingObjController : MonoBehaviour
 
     public float scrollingSpeed = default;
 
-    private GameObject objPrefab = default;
+    protected GameObject objPrefab = default;
     protected Vector2 objPrefabSize = default;
     protected List<GameObject> scrollingPool = default;
+    protected float prefabYPos = default;
+
 
     //private float lastScrObjInitXPos = default;
     public virtual void Start()
@@ -23,6 +25,7 @@ public class ScrollingObjController : MonoBehaviour
         GFunc.Assert(objPrefab != null || objPrefab != default);
 
         objPrefabSize = objPrefab.GetRectSizeDelta();
+        prefabYPos = objPrefab.transform.localPosition.y;
         //{스크롤링 풀을 생성해서 주어진 수만큼 초기화 
 
         GameObject tempObj = default;
@@ -44,17 +47,8 @@ public class ScrollingObjController : MonoBehaviour
         //}스크롤링 풀을 생성해서 주어진 수만큼 초기화 
         InitObjsPosition();
         //{생성한 오브젝트의 위치를 설정한다.
-        //int scrollCntIndex = scrollingObjCount - 1;
-        float horizonPos =
-            objPrefabSize.x * (scrollingObjCount - 1) * (-1) * 0.5f;
-
-        for (int i = 0; i < scrollingObjCount; i++)
-        {
-            scrollingPool[i].SetLocalPos(horizonPos, 0f, 0f);
-
-            horizonPos = horizonPos + objPrefabSize.x;
-
-        }   //loop 생성한 오브젝트를 가로로 왼쪽부터 차례대로 정렬하는 루프       
+        
+            
             //가장 마지막 오브젝트의 초기화 위치를 캐싱한다
 
         //}생성한 오브젝트의 위치를 설정한다.
