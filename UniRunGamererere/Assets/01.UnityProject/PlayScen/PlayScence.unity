@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathSound: {fileID: 8300000, guid: 5f9c1388ab9450341aa347af58ddd0f7, type: 3}
-  jumpForce: 700
+  jumpForce: 250
 --- !u!82 &1322246033
 AudioSource:
   m_ObjectHideFlags: 0
